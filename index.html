@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>AR Wayfinding</title>
+  <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+  <style>
+    body { margin: 0; overflow: hidden; background: #000; }
+    #ui-layer { position: fixed; inset: 0; z-index: 999; pointer-events: none; color: white; }
+    #permission-overlay {
+      position: absolute; inset: 0; background: rgba(0,0,0,0.9);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      pointer-events: auto;
+    }
+    #start-btn { padding: 20px 40px; font-size: 20px; background: cyan; border: none; border-radius: 10px; font-weight: bold; }
+    #debug-ui { position: absolute; top: 10px; left: 10px; background: rgba(0,0,0,0.7); padding: 10px; font-family: monospace; border-radius: 5px; }
+  </style>
+</head>
+<body>
+
+<div id="ui-layer">
+  <div id="debug-ui">
+    Step: <span id="step-val">Waiting...</span><br>
+    Dist: <span id="dist-val">0</span> ft
+  </div>
+  <div id="permission-overlay">
+    <h2>AR Navigation</h2>
+    <p>Point at Hiro Marker after starting</p>
+    <button id="start-btn">START</button>
+  </div>
+</div>
+
+<a-scene 
+  embedded 
+  vr-mode-ui="enabled: false" 
+  arjs="sourceType: webcam; debugUIEnabled: false; cameraParametersUrl: https://raw.githack.com/AR-js-org/AR.js/master/data/data/camera_para.dat;">
+
+  <a-entity id="rig">
+    <a-camera id="ar-camera" nav-engine look-controls="pointerLockEnabled: false">
+      <a-entity id="hud" position="0 0 -1"> 
+        <a-entity id="nav-arrow" 
+                  geometry="primitive: triangle; vertexA: 0 0.1 0; vertexB: -0.07 -0.07 0; vertexC: 0.07 -0.07 0" 
+                  material="color: #00ffff; shader: flat"
+                  position="0 0 0" 
+                  scale="0.5 0.5 0.5"> 
+        </a-entity>
+      </a-entity>
+    </a-camera>
+  </a-entity>
+
+  <a-marker preset="hiro" id="markerA" markerwidth="0.127">
+    <a-box position="0 0.5 0" material="color: red; opacity: 0.6" scale="0.1 0.1 0.1" visible="false"></a-box>
+  </a-marker>
+
+</a-scene>
+
+<script src="js/nav.js"></script>
+<script src="js/ar.js"></script>
+</body>
+</html>
