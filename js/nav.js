@@ -4,7 +4,7 @@ AFRAME.registerComponent('nav-engine', {
   init: function() {
     this.currentStep = 1; 
     this.scaleFactor = 0.123; 
-    this.arrivalThresholdFeet = 2.0; 
+    this.arrivalThresholdFeet = 4.0; 
     
     this.arrow = document.getElementById('nav-arrow');
     this.stepText = document.getElementById('step-val');
