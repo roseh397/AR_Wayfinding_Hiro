@@ -56,7 +56,7 @@ AFRAME.registerComponent('nav-engine', {
       }
 
     } else {
-      this.stepText.innerText = "FIND HIRO MARKER";
+      this.stepText.innerText = "FIND AR MARKER";
       this.distText.innerText = "---";
     }
   }
