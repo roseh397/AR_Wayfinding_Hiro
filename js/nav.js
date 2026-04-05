@@ -68,6 +68,15 @@ AFRAME.registerComponent('nav-engine', {
       return;
     }
 
+    //STEP 4: Turn Left
+    if (this.currentStep === 4) {
+      this.stepText.innerText = "STEP 4: TURN LEFT";
+      this.distText.innerText = "---";
+      this.arrow.setAttribute('material', 'color', '#00ff00');
+      this.arrow.setAttribute('rotation', '0 0 90');
+      return; 
+    }
+
     // No marker found
     this.stepText.innerText = "FIND AR MARKER";
     this.distText.innerText = "---";
