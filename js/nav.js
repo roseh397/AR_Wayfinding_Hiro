@@ -47,15 +47,8 @@ AFRAME.registerComponent('nav-engine', {
   },
 
   tick: function() {
-    
-
-    // STEP 1: Walk to markerA
-    if (this.updateArrowForMarker(this.markerEl, 2)) {
-      return;
-    }
-
     // STEP 2: The Turn Right
-    if ((this.markerE1 || this.markerE1.object3D.visible) && (distFeet <= this.arrivalThresholdFeet)) {
+    if (this.currentStep === 2) {
       this.stepText.innerText = "TURN RIGHT";
       this.distText.innerText = "---";
       this.arrow.setAttribute('material', 'color', '#00ff00');
@@ -63,18 +56,23 @@ AFRAME.registerComponent('nav-engine', {
       return; 
     }
 
-    // STEP 3: Walk to markerB
-    if (this.updateArrowForMarker(this.markerE2, 4)) {
-      return;
-    }
-
-    //STEP 4: Turn Left
-    if ((this.markerE1 || this.markerE1.object3D.visible) && (distFeet <= this.arrivalThresholdFeet)) {
+    // STEP 4: The Turn Left
+    if (this.currentStep === 4) {
       this.stepText.innerText = "TURN LEFT";
       this.distText.innerText = "---";
       this.arrow.setAttribute('material', 'color', '#00ff00');
       this.arrow.setAttribute('rotation', '0 0 90');
       return; 
+    }
+
+    // STEP 1: Walk to markerA
+    if (this.updateArrowForMarker(this.markerEl, 2)) {
+      return;
+    }
+
+    // STEP 3: Walk to markerB
+    if (this.updateArrowForMarker(this.markerE2, 4)) {
+      return;
     }
 
     // No marker found
