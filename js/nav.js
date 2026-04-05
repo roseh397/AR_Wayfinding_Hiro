@@ -12,6 +12,7 @@ AFRAME.registerComponent('nav-engine', {
     
     this.markerEl = document.getElementById('markerA');
     this.markerE2 = document.getElementById('markerB');
+    this.markerE3 = document.getElementById('markerC');
   },
 
   updateArrowForMarker: function(marker, nextStep) {
@@ -87,7 +88,33 @@ AFRAME.registerComponent('nav-engine', {
       this.distText.innerText = "---";
       this.arrow.setAttribute('material', 'color', '#00ff00');
       this.arrow.setAttribute('rotation', '0 0 90');
+
+      // Advance to searching for markerC when markerB is no longer visible
+      if (!this.markerE2 || !this.markerE2.object3D.visible) {
+        this.currentStep = 5;
+      }
+
       return; 
     }
+
+    // STEP 5: Search for and walk to markerC
+    if (this.currentStep === 5) {
+      if (this.updateArrowForMarker(this.markerE3, 6)) {
+        return;
+      }
+      this.stepText.innerText = "FIND AR MARKER";
+      this.distText.innerText = "---";
+      return;
+    }
+
+    // STEP 6: Arrival at destination
+    if (this.currentStep === 6) {
+      this.stepText.innerText = "ARRIVED AT DESTINATION";
+      this.distText.innerText = "---";
+      this.arrow.setAttribute('material', 'color', '#00ff00');
+
+      return; 
+    }
+
   }
 });
