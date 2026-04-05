@@ -47,13 +47,38 @@ AFRAME.registerComponent('nav-engine', {
   },
 
   tick: function() {
-    // STEP 2: The Turn Right
+    // STEP 1: Search for and walk to markerA
+    if (this.currentStep === 1) {
+      if (this.updateArrowForMarker(this.markerEl, 2)) {
+        return;
+      }
+      this.stepText.innerText = "FIND AR MARKER";
+      this.distText.innerText = "---";
+      return;
+    }
+
+    // STEP 2: The Turn Right (advance to step 3 when markerA is out of sight)
     if (this.currentStep === 2) {
       this.stepText.innerText = "TURN RIGHT";
       this.distText.innerText = "---";
       this.arrow.setAttribute('material', 'color', '#00ff00');
       this.arrow.setAttribute('rotation', '0 0 -90');
+      
+      // Advance to searching for markerB when markerA is no longer visible
+      if (!this.markerEl || !this.markerEl.object3D.visible) {
+        this.currentStep = 3;
+      }
       return; 
+    }
+
+    // STEP 3: Search for and walk to markerB
+    if (this.currentStep === 3) {
+      if (this.updateArrowForMarker(this.markerE2, 4)) {
+        return;
+      }
+      this.stepText.innerText = "FIND AR MARKER";
+      this.distText.innerText = "---";
+      return;
     }
 
     // STEP 4: The Turn Left
@@ -64,19 +89,5 @@ AFRAME.registerComponent('nav-engine', {
       this.arrow.setAttribute('rotation', '0 0 90');
       return; 
     }
-
-    // STEP 1: Walk to markerA
-    if (this.updateArrowForMarker(this.markerEl, 2)) {
-      return;
-    }
-
-    // STEP 3: Walk to markerB
-    if (this.updateArrowForMarker(this.markerE2, 4)) {
-      return;
-    }
-
-    // No marker found
-    this.stepText.innerText = "FIND AR MARKER";
-    this.distText.innerText = "---";
   }
 });
