@@ -55,7 +55,7 @@ AFRAME.registerComponent('nav-engine', {
     }
 
     // STEP 2: The Turn Right
-    if (this.currentStep === 2) {
+    if ((this.markerE1 || this.markerE1.object3D.visible) && (distFeet <= this.arrivalThresholdFeet)) {
       this.stepText.innerText = "TURN RIGHT";
       this.distText.innerText = "---";
       this.arrow.setAttribute('material', 'color', '#00ff00');
@@ -69,7 +69,7 @@ AFRAME.registerComponent('nav-engine', {
     }
 
     //STEP 4: Turn Left
-    if (this.currentStep === 4) {
+    if ((this.markerE1 || this.markerE1.object3D.visible) && (distFeet <= this.arrivalThresholdFeet)) {
       this.stepText.innerText = "TURN LEFT";
       this.distText.innerText = "---";
       this.arrow.setAttribute('material', 'color', '#00ff00');
