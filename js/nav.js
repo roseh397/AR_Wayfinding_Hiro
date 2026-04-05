@@ -56,7 +56,7 @@ AFRAME.registerComponent('nav-engine', {
 
     // STEP 2: The Turn Right
     if (this.currentStep === 2) {
-      this.stepText.innerText = "STEP 2: TURN RIGHT";
+      this.stepText.innerText = "TURN RIGHT";
       this.distText.innerText = "---";
       this.arrow.setAttribute('material', 'color', '#00ff00');
       this.arrow.setAttribute('rotation', '0 0 -90');
@@ -70,7 +70,7 @@ AFRAME.registerComponent('nav-engine', {
 
     //STEP 4: Turn Left
     if (this.currentStep === 4) {
-      this.stepText.innerText = "STEP 4: TURN LEFT";
+      this.stepText.innerText = "TURN LEFT";
       this.distText.innerText = "---";
       this.arrow.setAttribute('material', 'color', '#00ff00');
       this.arrow.setAttribute('rotation', '0 0 90');
