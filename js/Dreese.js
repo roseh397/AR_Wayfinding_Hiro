@@ -135,6 +135,5 @@ AFRAME.registerComponent('nav-engine', {
       // so currentStep stays at 10 and the loop "rests" here.
       return;
     }
-    }
   }
 });
