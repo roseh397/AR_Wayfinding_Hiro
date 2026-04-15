@@ -117,22 +117,10 @@ AFRAME.registerComponent('nav-engine', {
     }
 
     if (this.currentStep === 10) {
-      // this.showTurnInstruction('YOUR DESTINATION IS ON THE RIGHT', '0 0 -90', this.markerD, 9);
-      // //this.stepText.innerText = 'YOUR DESTINATION IS ON THE RIGHT';
-      // this.distText.innerText = '---';
-      // this.arrow.setAttribute('material', 'color', '#00ff00');
-      // return;
-
-      // 1. Set the final instructions
       this.stepText.innerText = 'DESTINATION IS ON THE RIGHT';
       this.distText.innerText = 'ARRIVED';
-      
-      // 2. Set the arrow to point Right (-90) and stay Green
       this.arrow.setAttribute('rotation', '0 0 -90');
       this.arrow.setAttribute('material', 'color', '#00ff00');
-      
-      // 3. We do NOT call this.showTurnInstruction here, 
-      // so currentStep stays at 10 and the loop "rests" here.
       return;
     }
   }
