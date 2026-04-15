@@ -45,24 +45,13 @@ AFRAME.registerComponent('nav-engine', {
     return true;
   },
 
-  // showTurnInstruction: function(text, rotation, markerToLose, nextStep) {
-  //   this.stepText.innerText = text;
-  //   this.distText.innerText = '---';
-  //   this.arrow.setAttribute('material', 'color', '#00ff00');
-  //   this.arrow.setAttribute('rotation', rotation);
+  showTurnInstruction: function(text, rotation, markerToLose, nextStep) {
+    this.stepText.innerText = text;
+    this.distText.innerText = '---';
+    this.arrow.setAttribute('material', 'color', '#00ff00');
+    this.arrow.setAttribute('rotation', rotation);
 
-  //   if (!markerToLose || !markerToLose.object3D.visible) {
-  //     this.currentStep = nextStep;
-  //   }
-  // },
-
-  showTurnInstruction: function(text, turnRotation, markerToLose, nextStep) {
-    if (markerToLose && markerToLose.object3D.visible) {
-      this.stepText.innerText = text;
-      this.distText.innerText = 'TURN NOW';
-      this.arrow.setAttribute('material', 'color', '#00ff00');
-      this.arrow.setAttribute('rotation', turnRotation);
-    } else {
+    if (!markerToLose || !markerToLose.object3D.visible) {
       this.currentStep = nextStep;
     }
   },
@@ -84,6 +73,7 @@ AFRAME.registerComponent('nav-engine', {
       if (this.updateArrowForMarker(this.markerB, 4)) return;
       this.stepText.innerText = 'FIND SECOND HIRO MARKER';
       this.distText.innerText = '---';
+      this.arrow.setAttribute('rotation', '0 0 180');
       return;
     }
 
@@ -96,6 +86,7 @@ AFRAME.registerComponent('nav-engine', {
       if (this.updateArrowForMarker(this.markerC, 6)) return;
       this.stepText.innerText = 'FIND THIRD HIRO MARKER';
       this.distText.innerText = '---';
+      this.arrow.setAttribute('rotation', '0 0 180');
       return;
     }
 
@@ -108,6 +99,7 @@ AFRAME.registerComponent('nav-engine', {
       if (this.updateArrowForMarker(this.markerD, 8)) return;
       this.stepText.innerText = 'FIND FOURTH HIRO MARKER';
       this.distText.innerText = '---';
+      this.arrow.setAttribute('rotation', '0 0 180');
       return;
     }
 
@@ -120,6 +112,7 @@ AFRAME.registerComponent('nav-engine', {
       if (this.updateArrowForMarker(this.markerE, 10)) return;
       this.stepText.innerText = 'FIND FIFTH HIRO MARKER';
       this.distText.innerText = '---';
+      this.arrow.setAttribute('rotation', '0 0 180');
       return;
     }
 
