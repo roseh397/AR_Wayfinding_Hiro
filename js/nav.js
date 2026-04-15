@@ -1,3 +1,4 @@
+//OLD EXAMPLE PATH - FOR DOCUMENTATION
 const FEET_TO_METERS = 0.3048;
 
 AFRAME.registerComponent('nav-engine', {

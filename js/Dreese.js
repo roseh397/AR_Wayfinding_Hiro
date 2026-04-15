@@ -45,13 +45,24 @@ AFRAME.registerComponent('nav-engine', {
     return true;
   },
 
-  showTurnInstruction: function(text, rotation, markerToLose, nextStep) {
-    this.stepText.innerText = text;
-    this.distText.innerText = '---';
-    this.arrow.setAttribute('material', 'color', '#00ff00');
-    this.arrow.setAttribute('rotation', rotation);
+  // showTurnInstruction: function(text, rotation, markerToLose, nextStep) {
+  //   this.stepText.innerText = text;
+  //   this.distText.innerText = '---';
+  //   this.arrow.setAttribute('material', 'color', '#00ff00');
+  //   this.arrow.setAttribute('rotation', rotation);
 
-    if (!markerToLose || !markerToLose.object3D.visible) {
+  //   if (!markerToLose || !markerToLose.object3D.visible) {
+  //     this.currentStep = nextStep;
+  //   }
+  // },
+
+  showTurnInstruction: function(text, turnRotation, markerToLose, nextStep) {
+    if (markerToLose && markerToLose.object3D.visible) {
+      this.stepText.innerText = text;
+      this.distText.innerText = 'TURN NOW';
+      this.arrow.setAttribute('material', 'color', '#00ff00');
+      this.arrow.setAttribute('rotation', turnRotation);
+    } else {
       this.currentStep = nextStep;
     }
   },
@@ -113,7 +124,8 @@ AFRAME.registerComponent('nav-engine', {
     }
 
     if (this.currentStep === 10) {
-      this.stepText.innerText = 'ARRIVED AT DESTINATION';
+      this.showTurnInstruction('YOUR DESTINATION IS ON THE RIGHT', '0 0 -90', this.markerD, 9);
+      //this.stepText.innerText = 'YOUR DESTINATION IS ON THE RIGHT';
       this.distText.innerText = '---';
       this.arrow.setAttribute('material', 'color', '#00ff00');
       return;
