@@ -12,6 +12,8 @@ use case of wayfinding in Dreese Labs.
 js/nav.js - implementation of an older demo path used for testing and learning purposes. included
 as a reference/guide to aid future teams in their implementation.
 
+Code is deployed to ar-wayfinding-hiro.vercel.app
+
 Here are some other resources and tutorials we found helpful:
 https://ar-js-org.github.io/AR.js-Docs/
 https://aframe.io/blog/arjs/
